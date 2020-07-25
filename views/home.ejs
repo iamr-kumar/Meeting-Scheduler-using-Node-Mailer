@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Scheduler</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/meetings.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logout">
+            <button class="btn btn-danger"><a href="/logout">Logout</a></button>
+        </div>
+        <div class="meeting-container">
+            <h3>Schedule your meeting!</h3>
+            <form action="/post" method="POST" class="form-group">
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="time-from">From</label>
+                    <input type="time" id="time-from" name="timeFrom" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="time-from">To</label>
+                    <input type="time" id="time-to" name="timeTo" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="place">Place</label>
+                    <input type="text" id="place" name="place" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="tag">Tag</label>
+                    <textarea name="tag" id="tag" cols="30" rows="5" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="meeting-info">
+
+            <% if(upcomingMeetings && upcomingMeetings.length > 0){ %>
+                <div class="upcoming-meetings">
+                    <h3>Upcoming Meetings</h3>
+                    <ul class="list-group">
+                        <% upcomingMeetings.forEach(meeting => { %>
+                            <li class="list-group-item">
+                                <div class="row d-flex">
+                                    <div class="col-5 align-self-center">
+                                        <h2><%=meeting.date.toLocaleTimeString() %></h2>
+                                    </div>
+                                    <div class="col-7 d-flex flex-column align-items-center">
+                                        <div class="date-place d-flex justify-content-between" style="width: 100%;">
+                                            <h5><%= meeting.date.toLocaleDateString() %></h5>
+                                            <h5><%= meeting.place %></h5>
+                                        </div>
+                                        <div class="title">
+                                            <h3><%= meeting.tag %></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </div>
+            <% } %> 
+        
+            <% if(pastMeetings && pastMeetings.length > 0){ %>
+                <div class="upcoming-meetings">
+                    <h3>Past Meetings</h3>
+                    <ul class="list-group">
+                        <% pastMeetings.forEach(meeting => { %>
+                            <li class="list-group-item">
+                                <div class="row d-flex">
+                                    <div class="col-5 align-self-center">
+                                        <h2><%=meeting.date.toLocaleTimeString() %></h2>
+                                    </div>
+                                    <div class="col-7 d-flex flex-column align-items-center">
+                                        <div class="date-place d-flex justify-content-between" style="width: 100%;">
+                                            <h5><%= meeting.date.toLocaleDateString() %></h5>
+                                            <h5><%= meeting.place %></h5>
+                                        </div>
+                                        <div class="title">
+                                            <h3><%= meeting.tag %></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </div>
+            <% } %> 
+        </div>
+    </div>
+
+    
+</body>
+</html>
