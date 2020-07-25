@@ -7,6 +7,11 @@ Built on Express and MongoDB using Passort.js for authentication and Nodemailer 
 ## Installing
 * `npm install`
 * `node app.js`
+### Note
+ To send email every minute for testing purposes, replace the following code in app.js
+  `cron.schedule('0 9 * * *, () => {...})`
+  with this
+  `cron.schedule('* * * * *, () => {...})`
 
 ## Points
 * Built for VinnovateIT recruitment task
