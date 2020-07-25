@@ -33,7 +33,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
-mongoose.connect("mongodb://127.0.0.1:27017/Meeting_Scheduler")
+mongoose.connect("mongodb+srv://iamzacker:iamzacker@node-mailer-test.zyfeu.mongodb.net/<dbname>?retryWrites=true&w=majority")
     .then(
         () => console.log("connection successful!")
     )
@@ -123,12 +123,12 @@ app.post("/signup", (req, res) => {
                     })
                     .catch(err => {
                         // req.flash("error", err.message);
-                        console.log(err);
                         return res.redirect("/signup");
                     })
             }
         })
         .catch(err => {
+            console.log(err);
             // req.flash("error", err.message);
             return res.redirect("/signup");
         })
